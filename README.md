@@ -53,7 +53,7 @@ Każdy filozof przechodzi cyklicznie przez trzy następujące stany:
 ## Koncepcja programu
 - Wątki - każdy filozof to osobny wątek, który symuluje niezależne działanie.
 - Zasoby współdzielone - widelce są reprezentowane przez mutexy, przechowywane są w wektorze `vector<mutex> forks`.
-- Synchronizacja wyjścia: Globalny mutex `cout_mutex` gwarantujący synchronizację wypisywania komunikatów.
+- Synchronizacja wyjścia: Globalny mutex `coutMut` gwarantujący synchronizację wypisywania komunikatów.
 
 ## Wyzwania i napotkane problemy
 ### Wyzwania
@@ -63,7 +63,7 @@ Każdy filozof przechodzi cyklicznie przez trzy następujące stany:
 
 ### Problemy
 - **Możliwy deadlock przy równoczesnym sięganiu po widelce** - Rozwiązano wprowadzeniem hierarchii zasobów – filozofowie zawsze najpierw próbują pobrać widelec o niższym indeksie, co eliminuje możliwość cyklicznego blokowania.
-- **Niezsynchronizowany cout** - Rozwiązaniem było dodanie globalnego mutexa `cout_mutex` z wykorzystaniem `std::lock_guard`, aby komunikaty w konsoli były spójne.
+- **Niezsynchronizowany cout** - Rozwiązaniem było dodanie globalnego mutexa `coutMut` z wykorzystaniem `std::lock_guard`, aby komunikaty w konsoli były spójne.
 - **Inicjalizacja wektora mutexów** - Próba użycia `vector<mutex> forks(philosophersCount)` prowadziła do błędów kompilacji (mutexy nie są kopiowalne). Rozwiązano inicjalizując wektor z domyślnie skonstruowanymi mutexami poprzez `vector<mutex>(n)` - brak potrzeby kopiowania mutexów.
 
 ## Zastosowane strategie
