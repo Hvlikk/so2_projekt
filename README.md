@@ -67,7 +67,7 @@ Każdy filozof przechodzi cyklicznie przez trzy następujące stany:
 - **Niezsynchronizowany cout** - Rozwiązaniem było dodanie globalnego mutexa `cout_mutex` z wykorzystaniem `std::lock_guard`, aby komunikaty w konsoli były spójne.
 - **Inicjalizacja wektora mutexów** - Próba użycia `vector<mutex> forks(philosophersCount)` prowadziła do błędów kompilacji (mutexy nie są kopiowalne). Rozwiązano inicjalizując wektor z domyślnie skonstruowanymi mutexami poprzez `vector<mutex>(n)` - brak potrzeby kopiowania mutexów.
 
-### Zastosowane strategie
+## Zastosowane strategie
 1. Zapobieganie zakleszczeniom - Filozofowie zawsze blokują widelce w ustalonej kolejności (najpierw widelec o niższym indeksie). Eliminuje to możliwość powstania cyklu czekania (np. gdy wszyscy czekają na prawy widelec).  
 Przykładowo dla `n = 5`:
 
