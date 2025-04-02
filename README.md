@@ -2,7 +2,6 @@
 
 # Sprawozadnie z projektu
 
-___
 ## Zadanie 1 - Problem jedzących filozofów
 **Autor: Miłosz Halicki 272874**  
  **Politechnika Wrocławska**  
